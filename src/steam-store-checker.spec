@@ -1,5 +1,17 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+def LF2CRLF(file_path):
+    WINDOWS_LINE_ENDING = b'\r\n'
+    UNIX_LINE_ENDING = b'\n'
+    with open(file_path, 'rb') as open_file:
+        content = open_file.read()
+    content = content.replace(UNIX_LINE_ENDING, WINDOWS_LINE_ENDING)
+    with open(file_path, 'wb') as open_file:
+        open_file.write(content)
+
+LF2CRLF(os.path.join("res", "curl.bat"))
+LF2CRLF(os.path.join("res", "tcping.bat"))
+
 # Pack Res Files
 import os
 import zipfile

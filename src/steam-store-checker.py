@@ -1,3 +1,4 @@
+# -*- mode: python ; coding: utf-8 -*-
 # Easy-to-use-Steam-Store-Checker Launcher Script
 # Author: lwd-temp
 import os
@@ -181,5 +182,6 @@ if __name__ == '__main__':
     print("解压资源文件...")
     with zipfile.ZipFile("pak.zip") as zf:
         zf.extractall()
+    os.chdir(os.path.join(os.path.abspath("."), "res"))
     os.system("title store.steampowered.com连接测试")
     main()
