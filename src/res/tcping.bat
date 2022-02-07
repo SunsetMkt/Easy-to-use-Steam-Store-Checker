@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 > nul
 
 set ip=%1
 set port=%2
@@ -6,10 +7,10 @@ set basetitle=tcping - %ip%:%port%
 
 title %basetitle%
 
-echo tcping %ip%·þÎñÆ÷%port%¶Ë¿ÚTCPÐ­Òé¿É´ïÐÔ²âÊÔ
-echo ÔÚ±¾²âÊÔÖÐ£¬ÎÒÃÇ»á²»¶Ï²âÊÔ%ip%:%port%ÊÇ·ñ¿É´ï¡£Èô²»¿É´ï£¬Ôò»áÌáÊ¾¡°No Response¡±¡£
-echo Çë×ÐÏ¸¹Û²ìÏÂ·½Êä³öÐÅÏ¢¡£
+echo tcping %ip%æœåŠ¡å™¨%port%ç«¯å£TCPåè®®å¯è¾¾æ€§æµ‹è¯•
+echo åœ¨æœ¬æµ‹è¯•ä¸­ï¼Œæˆ‘ä»¬ä¼šä¸æ–­æµ‹è¯•%ip%:%port%æ˜¯å¦å¯è¾¾ã€‚è‹¥ä¸å¯è¾¾ï¼Œåˆ™ä¼šæç¤ºâ€œNo Responseâ€ã€‚
+echo è¯·ä»”ç»†è§‚å¯Ÿä¸‹æ–¹è¾“å‡ºä¿¡æ¯ã€‚
 
 .\tcping.exe -t %ip% %port%
 
-pause
+pause > nul

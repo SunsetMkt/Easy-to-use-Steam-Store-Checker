@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 > nul
 
 set domain=%1
 set ip=%2
@@ -6,26 +7,26 @@ set port=%3
 if %3 == 80 (set protocol=http://)
 if %3 == 443 (set protocol=https://)
 set url=%protocol%%domain%
-set basetitle=curl - %domain%½âÎöÎª%ip%
+set basetitle=curl - %domain%è§£æžä¸º%ip%
 
 title %basetitle%
 
-echo curl %ip%ÍøÕ¾·ÃÎÊ²âÊÔ
-echo ÔÚ±¾²âÊÔÖÐ£¬ÎÒÃÇ»áÒÔ·ÃÎÊ%domain%µÄÃûÒå³¢ÊÔ·ÃÎÊ·þÎñÆ÷%ip%¡£URLÎª%url%£¬ÆäÖÐ%domain%±»½âÎöÎª%ip%¡£
-echo Çë°´ÏÂÈÎÒâ¼ü²âÊÔÒ»´Î
-pause
+echo curl %ip%ç½‘ç«™è®¿é—®æµ‹è¯•
+echo åœ¨æœ¬æµ‹è¯•ä¸­ï¼Œæˆ‘ä»¬ä¼šä»¥è®¿é—®%domain%çš„åä¹‰å°è¯•è®¿é—®æœåŠ¡å™¨%ip%ã€‚URLä¸º%url%ï¼Œå…¶ä¸­%domain%è¢«è§£æžä¸º%ip%ã€‚
+echo è¯·æŒ‰ä¸‹ä»»æ„é”®æµ‹è¯•ä¸€æ¬¡
+pause > nul
 
 :curl
-title %basetitle% - ÇëÇóÖÐ
+title %basetitle% - è¯·æ±‚ä¸­
 
 .\curl.exe -I -k -v --resolve %domain%:%port%:%ip% %url%
 set lastreturn=%errorlevel%
 
-title %basetitle% - ÇëÇó½áÊø
+title %basetitle% - è¯·æ±‚ç»“æŸ
 
-if %lastreturn% == 0 (echo ÇëÇó³É¹¦) else (echo ÇëÇóÊ§°Ü)
+if %lastreturn% == 0 (echo è¯·æ±‚æˆåŠŸ) else (echo è¯·æ±‚å¤±è´¥)
 
-echo Çë°´ÏÂÈÎÒâ¼üÔÙ²âÊÔÒ»´Î
-pause
+echo è¯·æŒ‰ä¸‹ä»»æ„é”®å†æµ‹è¯•ä¸€æ¬¡
+pause > nul
 
 goto curl
