@@ -1,5 +1,14 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+# Pack Res Files
+import os
+import zipfile
+with zipfile.ZipFile(os.path.join("res", "pak.zip"), "w", zipfile.ZIP_DEFLATED) as zf:
+    zf.write(os.path.join("res", "curl.exe"))
+    zf.write(os.path.join("res", "tcping.exe"))
+    zf.write(os.path.join("res", "curl.bat"))
+    zf.write(os.path.join("res", "tcping.bat"))
+
 
 block_cipher = None
 

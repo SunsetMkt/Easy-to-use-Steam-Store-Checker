@@ -1,4 +1,2 @@
-cd src\res
-python pack.py
-cd ..
-pyinstaller -F steam-store-checker.py --add-data ".\\res\\*;.\\"
+cd src
+pyinstaller -F steam-store-checker.spec
