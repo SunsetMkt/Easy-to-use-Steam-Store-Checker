@@ -4,7 +4,7 @@
 block_cipher = None
 
 
-a = Analysis(['start.py'],
+a = Analysis(['steam-store-checker.py'],
              pathex=['C:\\path-to\\Easy-to-use-Steam-Store-Checker'],
              binaries=[],
              datas=[('.\\\\res\\\\*', '.\\')],
@@ -25,7 +25,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,  
           [],
-          name='start',
+          name='steam-store-checker',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

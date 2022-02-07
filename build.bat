@@ -1,2 +1,2 @@
 cd src
-pyinstaller -F start.py --add-data ".\\res\\*;.\\"
+pyinstaller -F steam-store-checker.py --add-data ".\\res\\*;.\\"
