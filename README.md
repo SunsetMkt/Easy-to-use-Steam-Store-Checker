@@ -20,6 +20,3 @@
 
 * 把目前用批处理实现的部分用Python重写
 * 想办法让pyinstaller打包后的exe能打开多个Python命令行
-* ~~解决在GBK编码的Windows命令行环境下使用UTF8编码批处理中文乱码~~
-* ~~因为在wine环境下打包，就算用GBK编码保存bat，Action提供的还是乱码~~
-* 找到了个hack，想办法在不用hack的情况下解决问题

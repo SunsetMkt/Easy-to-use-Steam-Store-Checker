@@ -3,6 +3,7 @@
 import os
 import socket
 import sys
+import zipfile
 
 if os.name != "nt":
     print("请在Windows系统中运行本程序。")
@@ -176,5 +177,9 @@ def main():
 
 if __name__ == '__main__':
     os.chdir(getWorkDir())
+    print("当前工作目录：" + os.getcwd())
+    print("解压资源文件...")
+    with zipfile.ZipFile("pak.zip") as zf:
+        zf.extractall()
     os.system("title store.steampowered.com连接测试")
     main()

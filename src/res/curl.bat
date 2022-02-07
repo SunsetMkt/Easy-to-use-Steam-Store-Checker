@@ -1,5 +1,5 @@
 @echo off
-chcp 65001 > nul
+chcp 936 > nul
 
 set domain=%1
 set ip=%2
@@ -7,33 +7,26 @@ set port=%3
 if %3 == 80 (set protocol=http://)
 if %3 == 443 (set protocol=https://)
 set url=%protocol%%domain%
-set basetitle=curl - %domain%è§£æžä¸º%ip%
-echo chineseUTF8fixHACKdoNOTremoveTHISline > nul
+set basetitle=curl - %domain%½âÎöÎª%ip%
 
 title %basetitle%
 
-echo curl %ip%ç½‘ç«™è®¿é—®æµ‹è¯•
-echo chineseUTF8fixHACKdoNOTremoveTHISline > nul
-echo åœ¨æœ¬æµ‹è¯•ä¸­ï¼Œæˆ‘ä»¬ä¼šä»¥è®¿é—®%domain%çš„åä¹‰å°è¯•è®¿é—®æœåŠ¡å™¨%ip%ã€‚URLä¸º%url%ï¼Œå…¶ä¸­%domain%è¢«è§£æžä¸º%ip%ã€‚
-echo chineseUTF8fixHACKdoNOTremoveTHISline > nul
-echo è¯·æŒ‰ä¸‹ä»»æ„é”®æµ‹è¯•ä¸€æ¬¡
-echo chineseUTF8fixHACKdoNOTremoveTHISline > nul
+echo curl %ip%ÍøÕ¾·ÃÎÊ²âÊÔ
+echo ÔÚ±¾²âÊÔÖÐ£¬ÎÒÃÇ»áÒÔ·ÃÎÊ%domain%µÄÃûÒå³¢ÊÔ·ÃÎÊ·þÎñÆ÷%ip%¡£URLÎª%url%£¬ÆäÖÐ%domain%±»½âÎöÎª%ip%¡£
+echo Çë°´ÏÂÈÎÒâ¼ü²âÊÔÒ»´Î
 pause > nul
 
 :curl
-title %basetitle% - è¯·æ±‚ä¸­
-echo chineseUTF8fixHACKdoNOTremoveTHISline > nul
+title %basetitle% - ÇëÇóÖÐ
 
 .\curl.exe -I -k -v --resolve %domain%:%port%:%ip% %url%
 set lastreturn=%errorlevel%
 
-title %basetitle% - è¯·æ±‚ç»“æŸ
-echo chineseUTF8fixHACKdoNOTremoveTHISline > nul
+title %basetitle% - ÇëÇó½áÊø
 
-if %lastreturn% == 0 (echo è¯·æ±‚æˆåŠŸ) else (echo è¯·æ±‚å¤±è´¥)
+if %lastreturn% == 0 (echo ÇëÇó³É¹¦) else (echo ÇëÇóÊ§°Ü)
 
-echo è¯·æŒ‰ä¸‹ä»»æ„é”®å†æµ‹è¯•ä¸€æ¬¡
-echo chineseUTF8fixHACKdoNOTremoveTHISline > nul
+echo Çë°´ÏÂÈÎÒâ¼üÔÙ²âÊÔÒ»´Î
 pause > nul
 
 goto curl
