@@ -68,7 +68,14 @@ def isPyInstaller():
 
 
 def queryDNS(domain):
-    return socket.gethostbyname(domain)
+    try:
+        return socket.gethostbyname(domain)
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        print("请检查网络连接及DNS服务设置")
+        input()
+        sys.exit()
 
 
 def callCurlBat(domain, ip, port):
@@ -212,7 +219,7 @@ if __name__ == '__main__':
                 print("在VSCode中在代码库根目录下运行此文件可能会导致这个问题")
                 print("请在资源管理器中使用Python解释器打开此文件")
     except Exception as e:
-        print("资源文件处理，请检查应用程序")
+        print("资源文件处理异常，请检查应用程序")
         import traceback
         traceback.print_exc()
         input()
