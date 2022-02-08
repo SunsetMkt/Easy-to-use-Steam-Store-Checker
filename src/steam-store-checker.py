@@ -1,6 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 # Easy-to-use-Steam-Store-Checker Launcher Script
 # Author: lwd-temp
+# https://github.com/lwd-temp/Easy-to-use-Steam-Store-Checker
 import os
 import socket
 import sys
@@ -37,6 +38,9 @@ TLS协议是网络通讯的安全基础（被HTTPS协议所采用）。TLS提供
 
 无关紧要的引言：
 用伤害无辜者来掩盖自己的错误是心虚的体现，也永远掩盖不了。他们也一样。（汉娜 梅）
+
+获取源代码：
+https://github.com/lwd-temp/Easy-to-use-Steam-Store-Checker
 """
 
 
@@ -186,20 +190,32 @@ def main():
 if __name__ == '__main__':
     os.chdir(getWorkDir())
     print("当前工作目录：" + os.getcwd())
-    if isPyInstaller():
-        print("当前运行环境：PyInstaller")
-        print("解压资源文件...")
-        with zipfile.ZipFile("pak.zip") as zf:
-            zf.extractall()
-        os.chdir(os.path.join(os.path.abspath("."), "res"))
-        print("资源文件解压完成")
-    else:
-        print("当前运行环境：Python")
-        if os.path.exists(os.path.join("res", "curl.bat")) and os.path.exists(os.path.join("res", "tcping.bat")) and os.path.exists(os.path.join("res", "curl.exe")) and os.path.exists(os.path.join("res", "tcping.exe")):
-            print("资源文件位置正确")
+    try:
+        if isPyInstaller():
+            print("当前运行环境：PyInstaller")
+            print("解压资源文件...")
+            with zipfile.ZipFile("pak.zip") as zf:
+                zf.extractall()
+            if os.path.exists(os.path.join("res", "curl.bat")) and os.path.exists(os.path.join("res", "tcping.bat")) and os.path.exists(os.path.join("res", "curl.exe")) and os.path.exists(os.path.join("res", "tcping.exe")):
+                os.chdir(os.path.join(os.path.abspath("."), "res"))
+                print("资源文件解压完成")
+            else:
+                print("资源文件解压不完整，请检查应用程序")
+                input()
+                sys.exit()
         else:
-            print("资源文件不存在，请确定代码库是否完整或工作目录是否正确")
-            print("在VSCode中在代码库根目录下运行此文件可能会导致这个问题")
-            print("请在资源管理器中使用Python解释器打开此文件")
+            print("当前运行环境：Python")
+            if os.path.exists(os.path.join("res", "curl.bat")) and os.path.exists(os.path.join("res", "tcping.bat")) and os.path.exists(os.path.join("res", "curl.exe")) and os.path.exists(os.path.join("res", "tcping.exe")):
+                print("资源文件位置正确")
+            else:
+                print("资源文件不存在，请确定代码库是否完整或工作目录是否正确")
+                print("在VSCode中在代码库根目录下运行此文件可能会导致这个问题")
+                print("请在资源管理器中使用Python解释器打开此文件")
+    except Exception as e:
+        print("资源文件处理，请检查应用程序")
+        import traceback
+        traceback.print_exc()
+        input()
+        sys.exit()
     os.system("title store.steampowered.com连接测试")
     main()
