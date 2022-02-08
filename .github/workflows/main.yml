@@ -36,3 +36,4 @@ jobs:
       with:
         file: "src/dist/windows/*.exe"
         draft: false
+        tags: true
