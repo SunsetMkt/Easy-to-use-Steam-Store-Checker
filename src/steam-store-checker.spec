@@ -35,7 +35,7 @@ block_cipher = None
 
 
 a = Analysis(['steam-store-checker.py'],
-             pathex=['C:\\path-to\\Easy-to-use-Steam-Store-Checker'],
+             pathex=['C:\\path-to\\Easy-to-use-Steam-Store-Checker\\src'],
              binaries=[],
              datas=[('.\\\\res\\\\pak.zip', '.\\')],
              hiddenimports=[],
