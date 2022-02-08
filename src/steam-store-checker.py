@@ -52,8 +52,15 @@ def getWorkDir():
     if getattr(sys, 'frozen', False):
         base_path = sys._MEIPASS
     else:
-        base_path = os.path.join(os.path.abspath("."), "res")
+        base_path = os.path.join(os.path.abspath("."))
     return base_path
+
+
+def isPyInstaller():
+    if getattr(sys, 'frozen', False):
+        return True
+    else:
+        return False
 
 
 def queryDNS(domain):
@@ -179,9 +186,20 @@ def main():
 if __name__ == '__main__':
     os.chdir(getWorkDir())
     print("当前工作目录：" + os.getcwd())
-    print("解压资源文件...")
-    with zipfile.ZipFile("pak.zip") as zf:
-        zf.extractall()
-    os.chdir(os.path.join(os.path.abspath("."), "res"))
+    if isPyInstaller():
+        print("当前运行环境：PyInstaller")
+        print("解压资源文件...")
+        with zipfile.ZipFile("pak.zip") as zf:
+            zf.extractall()
+        os.chdir(os.path.join(os.path.abspath("."), "res"))
+        print("资源文件解压完成")
+    else:
+        print("当前运行环境：Python")
+        if os.path.exists(os.path.join("res", "curl.bat")) and os.path.exists(os.path.join("res", "tcping.bat")) and os.path.exists(os.path.join("res", "curl.exe")) and os.path.exists(os.path.join("res", "tcping.exe")):
+            print("资源文件位置正确")
+        else:
+            print("资源文件不存在，请确定代码库是否完整或工作目录是否正确")
+            print("在VSCode中在代码库根目录下运行此文件可能会导致这个问题")
+            print("请在资源管理器中使用Python解释器打开此文件")
     os.system("title store.steampowered.com连接测试")
     main()
