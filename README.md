@@ -1,6 +1,6 @@
 # Easy-to-use-Steam-Store-Checker
 
-易于使用的Steam 商店 store.steampowered.com 疑似 443 端口被干扰验证工具
+易于使用的Steam商店443端口干扰验证工具
 
 [lwd-temp/steam-store-checker](https://github.com/lwd-temp/steam-store-checker) 测试脚本打包优化版
 
@@ -38,6 +38,8 @@
 使用GNU General Public License v3.0协议开源发布
 
 ## 更新日志
+
+v0.0.2-alpha 无明显更新
 
 v0.0.1-alpha 基本完成，自动化构建
 
