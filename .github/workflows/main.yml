@@ -20,7 +20,22 @@ jobs:
       with:
         path: src
 
-    - uses: actions/upload-artifact@v2
+    - name: Copy LICENSE.txt to dist
+      run: cp LICENSE src/dist/windows/LICENSE.txt
+
+    - name: Copy LINK.txt to dist
+      run: cp LINK src/dist/windows/LINK.txt
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
       with:
         name: steam-store-checker
         path: src/dist/windows
+
+    - name: GitHub Release
+      uses: xresloader/upload-to-github-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        file: "src/dist/windows/*.exe"
+        draft: false
