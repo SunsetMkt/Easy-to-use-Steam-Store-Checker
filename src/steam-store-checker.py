@@ -86,7 +86,7 @@ def stdConn():
     callCurlBat(steamStoreDomain, steamStoreIP, 443)
     printHorizontalLine()
     print("请在新窗口中获取帮助及操作。")
-    input("按回车键回到主菜单...")
+    input("按Enter键回到主菜单...")
     printHorizontalLine()
     main()
 
@@ -104,7 +104,7 @@ def bdJPConn():
     callCurlBat(steamStoreDomain, baiduJPIP, 443)
     printHorizontalLine()
     print("请在新窗口中获取帮助及操作。")
-    input("按回车键回到主菜单...")
+    input("按Enter键回到主菜单...")
     printHorizontalLine()
     main()
 
@@ -122,14 +122,14 @@ def fuckConn():
     callCurlBat("fuck.steampowered.com", steamStoreIP, 443)
     printHorizontalLine()
     print("请在新窗口中获取帮助及操作。")
-    input("按回车键回到主菜单...")
+    input("按Enter键回到主菜单...")
     printHorizontalLine()
     main()
 
 
 def help():
     print(helpText)
-    input("按回车键回到主菜单...")
+    input("按Enter键回到主菜单...")
     printHorizontalLine()
     main()
 
