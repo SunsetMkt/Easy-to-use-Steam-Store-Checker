@@ -1,5 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+# GBK & LF2CRLF
 def LF2CRLF(file_path):
     WINDOWS_LINE_ENDING = b'\r\n'
     UNIX_LINE_ENDING = b'\n'
@@ -9,8 +10,16 @@ def LF2CRLF(file_path):
     with open(file_path, 'wb') as open_file:
         open_file.write(content)
 
-LF2CRLF(os.path.join("res", "curl.bat"))
-LF2CRLF(os.path.join("res", "tcping.bat"))
+def altLF2CRLF(infile, outfile):
+    with open(infile, 'r',encoding="utf-8") as open_file:
+        content = open_file.readlines()
+    with open(outfile, 'w',encoding="gbk",newline="\r\n") as open_file:
+        open_file.writelines(content)
+
+# LF2CRLF(os.path.join("res", "curl.bat"))
+# LF2CRLF(os.path.join("res", "tcping.bat"))
+altLF2CRLF(os.path.join("res", "src", "curl.bat"), os.path.join("res", "curl.bat"))
+altLF2CRLF(os.path.join("res", "src", "tcping.bat"), os.path.join("res", "tcping.bat"))
 
 # Pack Res Files
 import os
