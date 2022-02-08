@@ -31,6 +31,10 @@
 * curl
 * tcping
 
+## 开源许可
+
+使用GNU General Public License v3.0协议开源发布
+
 ## TODO
 
 * 把目前用批处理实现的部分用Python重写
