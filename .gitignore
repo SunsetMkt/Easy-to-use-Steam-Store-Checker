@@ -154,3 +154,5 @@ cython_debug/
 # Specific for Steam-Store-Checker
 !src/steam-store-checker.spec
 src/res/pak.zip
+src/res/curl.bat
+src/res/tcping.bat
