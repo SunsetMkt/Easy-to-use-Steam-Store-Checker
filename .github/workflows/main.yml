@@ -23,9 +23,6 @@ jobs:
     - name: Copy LICENSE.txt to dist
       run: cp LICENSE src/dist/windows/LICENSE.txt
 
-    - name: Copy LINK.txt to dist
-      run: cp LINK src/dist/windows/LINK.txt
-
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
