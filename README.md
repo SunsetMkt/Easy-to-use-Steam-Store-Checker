@@ -20,13 +20,25 @@
 
 尽可能不要修改spec文件，这个文件是定制化的。
 
+（适配架构取决于操作系统，代码库中附带的工具可执行文件是x86）
+
 ### 下载Release构建
 
 在页面中占到Releases，点击标记Latest的最近一次发布，在Assets中找到steam-store-checker.exe，点击下载。
 
+（这里提供的是x64版本）
+
 ### 下载GitHub Action构建（需要登录GitHub账号）
 
 点击上方Actions，寻找最靠近上方的有绿色√标记的构建，点击进入，在Artifacts下找到steam-store-checker，点击下载。
+
+（这里提供的是x64版本）
+
+### 直接从源码运行
+
+**不建议**，下载代码库后运行一次build.bat便会自动生成运行所需的资源文件，这时便可从源码直接运行steam-store-checker.py。亦可参考本项目的定制化构建流程自行补全缺失的资源文件。
+
+（代码库中附带的工具可执行文件是x86）
 
 ## 采用的工具
 
@@ -36,6 +48,15 @@
 ## 开源许可
 
 使用GNU General Public License v3.0协议开源发布
+
+不包括curl.exe及tcping.exe
+
+## 本项目的定制化构建流程
+
+详见steam-store-checker.spec。
+
+* 将\src\res\src下的两个UTF-8编码的批处理文件源码转换为在\src\res下的GBK编码、CRLF换行批处理文件（解决中文Windows下UTF-8批处理乱码及Git提交时会自动将CRLF转换成LF导致批处理解析错误的问题）
+* 将\src\res下的两个bat和两个exe文件打包成\src\res\pak.zip，只有此压缩文件会被PyInstaller打包。
 
 ## 更新日志
 
