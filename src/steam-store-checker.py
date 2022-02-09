@@ -219,6 +219,7 @@ if __name__ == '__main__':
                 if os.path.exists(os.path.join("res", "curl.bat")) and os.path.exists(os.path.join("res", "tcping.bat")) and os.path.exists(os.path.join("res", "curl.exe")) and os.path.exists(os.path.join("res", "tcping.exe")):
                     print("资源文件位置正确，但直接运行并没有在设计中被考虑，请自行检查批处理文件编码及换行方式是否正确")
                     print("自动处理了在代码库根目录下运行造成错误的工作目录产生的资源文件位置错误")
+                    os.chdir(os.path.join(os.path.abspath("."), "res"))
                 else:
                     print("资源文件不存在，因为直接运行并没有在设计中被考虑，请使用build.bat打包后执行生成的可执行文件")
     except Exception as e:
