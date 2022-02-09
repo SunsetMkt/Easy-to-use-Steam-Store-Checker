@@ -1,9 +1,17 @@
+:: curl.bat
+:: 用于调用curl.exe
+:: 参数： [域名] [IP] [端口]
+:: 参数不全会报错
+:: 协议会根据端口80或443自动选择，如果两个都不是则默认为http://
+:: %errorlevel% 表示上一个命令的返回值
 @echo off
 chcp 936 > nul
+:: 设置编码为GBK，避免在非中文Windows下的中文乱码
 
 set domain=%1
 set ip=%2
 set port=%3
+set protocol=http://
 if %3 == 80 (set protocol=http://)
 if %3 == 443 (set protocol=https://)
 set url=%protocol%%domain%

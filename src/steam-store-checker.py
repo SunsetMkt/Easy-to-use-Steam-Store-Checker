@@ -8,11 +8,12 @@ import sys
 import zipfile
 
 if os.name != "nt":
+    # 以防万一，只在Windows下运行
     print("请在Windows系统中运行本程序。")
     sys.exit()
 
-steamStoreDomain = "store.steampowered.com"
-baiduJPDomain = "www.baidu.jp"
+steamStoreDomain = "store.steampowered.com"  # Steam商店域名
+baiduJPDomain = "www.baidu.jp"  # 百度日本域名 在写下这行时会解析到日本百度云服务器
 helpText = """粗略的概念解读：
 当我们访问一个网站时，我们事实上连接了那个网站的服务器。
 我们通过人类友好的域名标记网站，DNS服务会将域名解析为人类不友好的IP地址。
@@ -36,15 +37,19 @@ TLS协议是网络通讯的安全基础（被HTTPS协议所采用）。TLS提供
 您的防病毒软件可能会阻止测试脚本运行，您可以通过逆向工程本工具包来证明它的安全性，建议您手动排除安全软件对本工具的影响。
 在执行测试2或3时，您的防病毒软件可能会报告不安全的网络连接，因为此工具构建的测试用请求会忽略目标服务器是否真的为那个域名提供服务，在测试过程中请予以放行。
 
-无关紧要的引言：
+引言：
 用伤害无辜者来掩盖自己的错误是心虚的体现，也永远掩盖不了。他们也一样。（汉娜 梅）
 
 获取源代码：
 https://github.com/lwd-temp/Easy-to-use-Steam-Store-Checker
 """
+# 引言来自由Hannah_AI创作的SCP-CN-601
+# 详见http://scp-wiki-cn.wikidot.com/scp-cn-601
+# 这句话使用Creative Commons Attribution-ShareAlike 3.0 License发布
 
 
 def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
     if getattr(sys, 'frozen', False):  # 是否Bundle Resource
         base_path = sys._MEIPASS
     else:
@@ -53,6 +58,7 @@ def resource_path(relative_path):
 
 
 def getWorkDir():
+    """获取PyInstaller打包后的工作目录"""
     if getattr(sys, 'frozen', False):
         base_path = sys._MEIPASS
     else:
@@ -61,6 +67,7 @@ def getWorkDir():
 
 
 def isPyInstaller():
+    """是否是PyInstaller打包的"""
     if getattr(sys, 'frozen', False):
         return True
     else:
@@ -68,6 +75,7 @@ def isPyInstaller():
 
 
 def queryDNS(domain):
+    """查询DNS记录"""
     try:
         return socket.gethostbyname(domain)
     except Exception as e:
@@ -79,19 +87,23 @@ def queryDNS(domain):
 
 
 def callCurlBat(domain, ip, port):
+    """调用curl.bat"""
     os.system("start curl.bat " + str(domain) +
               " " + str(ip) + " " + str(port))
 
 
 def callTcpingBat(ip, port):
+    """调用tcping.bat"""
     os.system("start tcping.bat " + str(ip) + " " + str(port))
 
 
 def printHorizontalLine():
+    """打印水平线"""
     print("-" * 10)
 
 
 def stdConn():
+    """常规访问store.steampowered.com"""
     print("常规访问store.steampowered.com")
     print("解析Steam商店域名...")
     steamStoreIP = queryDNS(steamStoreDomain)
@@ -110,6 +122,7 @@ def stdConn():
 
 
 def bdJPConn():
+    """访问store.steampowered.com，但将其IP解析为百度日本服务器"""
     print("访问store.steampowered.com，但将其IP解析为百度日本服务器")
     print("解析百度日本域名...")
     baiduJPIP = queryDNS(baiduJPDomain)
@@ -128,6 +141,7 @@ def bdJPConn():
 
 
 def fuckConn():
+    """访问fuck.steampowered.com，但将其IP解析为Steam商店服务器"""
     print("访问fuck.steampowered.com，但将其IP解析为Steam商店服务器")
     print("解析Steam商店域名...")
     steamStoreIP = queryDNS(steamStoreDomain)
@@ -146,6 +160,7 @@ def fuckConn():
 
 
 def help():
+    """打印帮助文本"""
     print(helpText)
     input("按Enter键回到主菜单...")
     printHorizontalLine()
@@ -153,6 +168,7 @@ def help():
 
 
 def main():
+    """主菜单"""
     print("store.steampowered.com连接测试工具包启动器")
     print("（即“Steam商店连接测试工具”）")
     print("工作目录：" + os.getcwd())
@@ -195,6 +211,7 @@ def main():
 
 
 if __name__ == '__main__':
+    # 如果直接运行
     os.chdir(getWorkDir())
     print("当前工作目录：" + os.getcwd())
     try:
@@ -203,8 +220,10 @@ if __name__ == '__main__':
             print("解压资源文件...")
             with zipfile.ZipFile("pak.zip") as zf:
                 zf.extractall()
+            # 需要注意，压缩文件内的文件结构是res/，不是散装，解压后会生成res文件夹
             if os.path.exists(os.path.join("res", "curl.bat")) and os.path.exists(os.path.join("res", "tcping.bat")) and os.path.exists(os.path.join("res", "curl.exe")) and os.path.exists(os.path.join("res", "tcping.exe")):
                 os.chdir(os.path.join(os.path.abspath("."), "res"))
+                # 进入res文件夹
                 print("资源文件解压完成")
             else:
                 print("资源文件解压不完整，请检查应用程序")
@@ -214,11 +233,13 @@ if __name__ == '__main__':
             print("当前运行环境：Python")
             if os.path.exists(os.path.join("res", "curl.bat")) and os.path.exists(os.path.join("res", "tcping.bat")) and os.path.exists(os.path.join("res", "curl.exe")) and os.path.exists(os.path.join("res", "tcping.exe")):
                 print("资源文件位置正确，但直接运行并没有在设计中被考虑，请自行检查批处理文件编码及换行方式是否正确")
+                # 一般来说，运行一次build.bat就可以补全资源文件，主要是批处理文件
             else:
                 os.chdir(os.path.join(os.path.abspath("."), "src"))
                 if os.path.exists(os.path.join("res", "curl.bat")) and os.path.exists(os.path.join("res", "tcping.bat")) and os.path.exists(os.path.join("res", "curl.exe")) and os.path.exists(os.path.join("res", "tcping.exe")):
                     print("资源文件位置正确，但直接运行并没有在设计中被考虑，请自行检查批处理文件编码及换行方式是否正确")
                     print("自动处理了在代码库根目录下运行造成错误的工作目录产生的资源文件位置错误")
+                    # 如果工作目录是代码库根目录，之前的方法无法定位资源文件
                     os.chdir(os.path.join(os.path.abspath("."), "res"))
                 else:
                     print("资源文件不存在，因为直接运行并没有在设计中被考虑，请使用build.bat打包后执行生成的可执行文件")
@@ -230,3 +251,6 @@ if __name__ == '__main__':
         sys.exit()
     os.system("title store.steampowered.com连接测试")
     main()
+else:
+    # 如果被导入
+    print("此模块不支持被导入")

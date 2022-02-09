@@ -1,27 +1,17 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-# GBK & LF2CRLF
-def LF2CRLF(file_path):
-    WINDOWS_LINE_ENDING = b'\r\n'
-    UNIX_LINE_ENDING = b'\n'
-    with open(file_path, 'rb') as open_file:
-        content = open_file.read()
-    content = content.replace(UNIX_LINE_ENDING, WINDOWS_LINE_ENDING)
-    with open(file_path, 'wb') as open_file:
-        open_file.write(content)
-
-def altLF2CRLF(infile, outfile):
+# UTF-8 LF转GBK CRLF
+def UTF8LF2GBKCRLF(infile, outfile):
     with open(infile, 'r',encoding="utf-8") as open_file:
         content = open_file.readlines()
     with open(outfile, 'w',encoding="gbk",newline="\r\n") as open_file:
         open_file.writelines(content)
 
-# LF2CRLF(os.path.join("res", "curl.bat"))
-# LF2CRLF(os.path.join("res", "tcping.bat"))
-altLF2CRLF(os.path.join("res", "src", "curl.bat"), os.path.join("res", "curl.bat"))
-altLF2CRLF(os.path.join("res", "src", "tcping.bat"), os.path.join("res", "tcping.bat"))
+UTF8LF2GBKCRLF(os.path.join("res", "src", "curl.bat"), os.path.join("res", "curl.bat"))
+UTF8LF2GBKCRLF(os.path.join("res", "src", "tcping.bat"), os.path.join("res", "tcping.bat"))
 
-# Pack Res Files
+# 打包资源文件到pak.zip
+# 需要注意这样压缩后，压缩文件内的文件结构是res/，不是散装
 import os
 import zipfile
 with zipfile.ZipFile(os.path.join("res", "pak.zip"), "w", zipfile.ZIP_DEFLATED) as zf:
