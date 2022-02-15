@@ -1,5 +1,6 @@
 :: curl.bat
 :: 用于调用curl.exe
+:: https://github.com/lwd-temp/Easy-to-use-Steam-Store-Checker
 :: 参数： [域名] [IP] [端口]
 :: 参数不全会报错
 :: 协议会根据端口80或443自动选择，如果两个都不是则默认为http://

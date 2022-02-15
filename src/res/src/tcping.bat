@@ -1,5 +1,6 @@
 :: tcping.bat
 :: 用于调用tcping.exe
+:: https://github.com/lwd-temp/Easy-to-use-Steam-Store-Checker
 :: 参数： [IP] [端口]
 :: 参数不全会报错
 @echo off

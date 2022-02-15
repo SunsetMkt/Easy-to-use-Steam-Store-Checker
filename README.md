@@ -45,11 +45,13 @@
 * curl
 * tcping
 
+它们的开源许可详见LICENSE
+
 ## 开源许可
 
 使用GNU General Public License v3.0协议开源发布
 
-不包括curl.exe及tcping.exe
+不包括二进制文件
 
 ## 本项目的定制化构建流程
 
@@ -59,6 +61,8 @@
 * 将\src\res下的两个bat和两个exe文件打包成\src\res\pak.zip，只有此压缩文件会被PyInstaller打包。
 
 ## 更新日志
+
+v0.1.0 发布
 
 v0.0.6-beta 补充注释，整理代码
 
@@ -76,3 +80,4 @@ v0.0.1-alpha 基本完成，自动化构建
 
 * 把目前用批处理实现的部分用Python重写
 * 想办法让pyinstaller打包后的exe能打开多个Python命令行
+* ~~打包类似traceroute~~不建议，tracetcp需要WinPcap驱动支持，Windows提供的tracert不支持TCP协议测试
